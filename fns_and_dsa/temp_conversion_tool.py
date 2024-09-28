@@ -1,37 +1,40 @@
-TEMPERATURE_SCALES = {
-    'Celsius': 'C',
-    'Fahrenheit': 'F'
-}
+# temp_conversion_tool.py
 
-def convert_temperature(value, input_scale, output_scale):
-    if input_scale == 'C':
-        if output_scale == 'F':
-            return value * 1.8 + 32
+# Global conversion factors
+FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9
+CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5
+
+# Function to convert Fahrenheit to Celsius
+def convert_to_celsius(fahrenheit):
+    # Using the global conversion factor
+    celsius = (fahrenheit - 32) * FAHRENHEIT_TO_CELSIUS_FACTOR
+    return celsius
+
+# Function to convert Celsius to Fahrenheit
+def convert_to_fahrenheit(celsius):
+    # Using the global conversion factor
+    fahrenheit = (celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + 32
+    return fahrenheit
+
+# Main user interaction function
+def main():
+    try:
+        # Prompt user for input
+        temperature = float(input("Enter the temperature to convert: "))
+        unit = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
+
+        # Validate unit input and perform conversion
+        if unit == 'C':
+            converted_temp = convert_to_fahrenheit(temperature)
+            print(f"{temperature}°C is {converted_temp:.6f}°F")
+        elif unit == 'F':
+            converted_temp = convert_to_celsius(temperature)
+            print(f"{temperature}°F is {converted_temp:.6f}°C")
         else:
-            return value
-    elif input_scale == 'F':
-        if output_scale == 'C':
-            return (value - 32) / 1.8
-        else:
-            return value
-    else:
-        return value
+            print("Invalid unit. Please enter 'C' for Celsius or 'F' for Fahrenheit.")
+    except ValueError:
+        print("Invalid temperature. Please enter a numeric value.")
 
-while True:
-    # Prompt the user for input
-    print('Enter the input temperature value:')
-    value = float(input())
-    print('Enter the input temperature scale (C, F):')
-    input_scale = input().upper()
-    print('Enter the output temperature scale (C, F):')
-    output_scale = input().upper()
-
-    # Convert the temperature and print the result
-    result = convert_temperature(value, input_scale, output_scale)
-    print(f'{value} {input_scale} = {result} {output_scale}')
-
-    # Prompt the user to continue or quit
-    print('Enter q to quit, or any other key to continue:')
-    choice = input()
-    if choice.lower() == 'q':
-        break
+# Run the main function
+if __name__ == "__main__":
+    main()
