@@ -18,7 +18,7 @@ def main():
         account.deposit(amount)
     elif command == "withdraw" and amount is not None:
         if account.withdraw(amount):
-            print(f"Withdrew: ${amount:.2f}")
+            print(f"Withdrew: ${amount:.1f}")  # Format output to one decimal place
         else:
             print("Insufficient funds.")
     elif command == "display":
