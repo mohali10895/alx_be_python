@@ -8,7 +8,7 @@ class BankAccount:
         """Add the specified amount to the account balance."""
         if amount > 0:
             self.__account_balance += amount
-            print(f"Deposited: ${amount}")  # Format to one decimal place
+            print(f"Deposited: ${amount:.2f}")  # Format to one decimal place
         else:
             print("Deposit amount must be positive.")
 
@@ -22,4 +22,4 @@ class BankAccount:
 
     def display_balance(self):
         """Print the current account balance in a user-friendly format."""
-        print(f"Current Balance: ${self.__account_balance}")
+        print(f"Current Balance: ${self.__account_balance:.2f}")
