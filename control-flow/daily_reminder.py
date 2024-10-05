@@ -23,5 +23,5 @@ match priority:
 if time_bound == "yes":
     reminder_message = f"'{task}' is a {priority} priority task that requires immediate attention today!"
 
-# Step 5: Print the customized reminder
-print(reminder_message)
+# Step 5: Print the customized reminder with "Reminder:" prefix
+print(f"Reminder: {reminder_message}")
